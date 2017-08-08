@@ -100,7 +100,7 @@ option to make the output legible. By default it is off. The value that is set h
 passed to the `space` parameter in `JSON.stringify`. indent can be a number (up to 10) or whitespaces. More information can be found here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
-## Authors 
+## Authors
 
 * [Owais Lone](https://github.com/owais)
 
