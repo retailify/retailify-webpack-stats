@@ -7,12 +7,14 @@ var extend = require('deep-extend');
 var assets = {};
 var DEFAULT_OUTPUT_FILENAME = 'webpack-stats.json';
 var DEFAULT_LOG_TIME = false;
+var DEFAULT_ABSOLUTE_PATH = '';
 
 
 function Plugin(options) {
   this.contents = {};
   this.options = options || {};
   this.options.filename = this.options.filename || DEFAULT_OUTPUT_FILENAME;
+  this.options.absolutePath = this.options.absolutePath || DEFAULT_ABSOLUTE_PATH;
   if (this.options.logTime === undefined) {
     this.options.logTime = DEFAULT_LOG_TIME;
   }
@@ -59,7 +61,9 @@ Plugin.prototype.apply = function(compiler) {
           if (compiler.options.output.publicPath) {
             F.publicPath= compiler.options.output.publicPath + file;
           }
-          if (compiler.options.output.path) {
+          if (self.options.absolutePath) {
+            F.path = path.join(self.options.absolutePath, file);
+          } else if (compiler.options.output.path) {
             F.path = path.join(compiler.options.output.path, file);
           }
           return F;

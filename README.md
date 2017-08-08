@@ -1,37 +1,42 @@
-# webpack-bundle-tracker
+# retailify-webpack-stats
 
-[![Join the chat at https://gitter.im/owais/webpack-bundle-tracker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/owais/webpack-bundle-tracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This is an extended version of [webpack-bundle-tracker](https://github.com/ezhome/webpack-bundle-tracker).
+For our changes we've written [ava](https://github.com/avajs/ava) tests.
 
 
-Spits out some stats about webpack compilation process to a file.
 
-<br>
-
-#### Install
+## Install
 
 ```bash
-npm install --save-dev webpack-bundle-tracker
+npm install --save-dev retailify-webpack-stats
 ```
 
-<br>
+## Usage
 
-#### Usage
+### Precedence Rule
+
+If the absolutePath is set, the path option is ignored.
+
 ```javascript
-var BundleTracker  = require('webpack-bundle-tracker');
+var BundleTracker  = require('retailify-webpack-stats');
 module.exports = {
         context: __dirname,
     entry: {
       app: ['./app']
     },
-    
+
     output: {
         path: require("path").resolve('./assets/bundles/'),
         filename: "[name]-[hash].js",
         publicPath: 'http://localhost:3000/assets/bundles/',
     },
-    
+
     plugins: [
-      new BundleTracker({path: __dirname, filename: './assets/webpack-stats.json'})
+      new BundleTracker({
+        absolutePath: '/usr/src/app',
+        filename: './assets/webpack-stats.json',
+        indent: 2
+      })
     ]
 }
 ```
@@ -60,14 +65,12 @@ In case webpack is still compiling, it'll look like,
 }
 ```
 
-
-
 And errors will look like,
 ```json
 {
   "status": "error",
   "file": "/path/to/file/that/caused/the/error",
-  "error": "ErrorName", 
+  "error": "ErrorName",
   "message": "ErrorMessage"
 }
 ```
@@ -84,7 +87,7 @@ And in case `logTime` option is set to `true`, the output will look like,
    "app":[{
       "name":"app-0828904584990b611fb8.js",
       "publicPath":"http://localhost:3000/assets/bundles/app-0828904584990b611fb8.js",
-      "path":"/home/user/project-root/assets/bundles/app-0828904584990b611fb8.js"
+      "path":"/usr/src/app/assets/bundles/app-0828904584990b611fb8.js"
     }]
   },
   "startTime":1440535322138,
@@ -92,9 +95,13 @@ And in case `logTime` option is set to `true`, the output will look like,
 }
 ```
 
-
-
 By default, the output JSON will not be indented. To increase readability, you can use the `indent`
 option to make the output legible. By default it is off. The value that is set here will be directly
-passed to the `space` parameter in `JSON.stringify`. More information can be found here:
+passed to the `space` parameter in `JSON.stringify`. indent can be a number (up to 10) or whitespaces. More information can be found here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
+## Authors 
+
+* [Owais Lone](https://github.com/owais)
+
+* [Thomas Meitz](https://github.com/retailify)
