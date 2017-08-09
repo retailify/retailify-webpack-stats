@@ -1,6 +1,6 @@
 {
   "name": "retailify-webpack-stats",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Spits out some stats about webpack compilation process to a file",
   "license": "MIT",
   "main": "index.js",
