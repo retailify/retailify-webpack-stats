@@ -64,11 +64,6 @@ Plugin.prototype.apply = function(compiler) {
           if (self.options.absolutePath) {
               absolutePath = self.options.absolutePath;
           }
-          /*
-          if (process.env.RETAILIFY_WEBPACK_STATS_ABSPATH) {
-              absolutePath = process.env.RETAILIFY_WEBPACK_STATS_ABSPATH;
-          }
-          */
           if (absolutePath) {
             F.path = path.join(absolutePath, file);
           } else if (compiler.options.output.path) {
