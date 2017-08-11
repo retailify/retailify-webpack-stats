@@ -1,5 +1,5 @@
 var path              = require('path'),
-    BundleTracker     = require('../index'), // load retailify-webpack-stats
+    BundleTracker     = require('../../index'), // load retailify-webpack-stats
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -8,13 +8,12 @@ module.exports = {
         'themes/default/js/search_plugin': './themes/assets/js/booking/search-and-book'
     },
     output   : {
-        path    : path.resolve('./assets/bundles/'),
+        path    : path.resolve('./assets/bundles/standardpath'),
         filename: "[name].js"
     },
     plugins  : [
         new BundleTracker({
-            filename: './assets/webpack-stats.json',
-            absolutePath: '/usr/src/app',
+            filename: './assets/bundles/standardpath/webpack-stats.json',
             indent: 2
         }),
         new ExtractTextPlugin('[name]')

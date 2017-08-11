@@ -4,7 +4,6 @@ var stripAnsi = require('strip-ansi');
 var mkdirp = require('mkdirp');
 var extend = require('deep-extend');
 
-var assets = {};
 var DEFAULT_OUTPUT_FILENAME = 'webpack-stats.json';
 var DEFAULT_LOG_TIME = false;
 var DEFAULT_ABSOLUTE_PATH = '';
@@ -23,7 +22,7 @@ function Plugin(options) {
 Plugin.prototype.apply = function(compiler) {
     var self = this;
 
-    compiler.plugin('compilation', function(compilation, callback) {
+    compiler.plugin('compilation', function(compilation) {
       compilation.plugin('failed-module', function(fail){
         var output = {
           status: 'error',
@@ -39,7 +38,7 @@ Plugin.prototype.apply = function(compiler) {
       });
     });
 
-    compiler.plugin('compile', function(factory, callback) {
+    compiler.plugin('compile', function() {
       self.writeOutput(compiler, {status: 'compiling'});
     });
 
@@ -59,10 +58,19 @@ Plugin.prototype.apply = function(compiler) {
         var files = chunk.files.map(function(file){
           var F = {name: file};
           if (compiler.options.output.publicPath) {
-            F.publicPath= compiler.options.output.publicPath + file;
+            F.publicPath = compiler.options.output.publicPath + file;
           }
+          var absolutePath = '';
           if (self.options.absolutePath) {
-            F.path = path.join(self.options.absolutePath, file);
+              absolutePath = self.options.absolutePath;
+          }
+          /*
+          if (process.env.RETAILIFY_WEBPACK_STATS_ABSPATH) {
+              absolutePath = process.env.RETAILIFY_WEBPACK_STATS_ABSPATH;
+          }
+          */
+          if (absolutePath) {
+            F.path = path.join(absolutePath, file);
           } else if (compiler.options.output.path) {
             F.path = path.join(compiler.options.output.path, file);
           }
