@@ -10,5 +10,3 @@ cache:
 script:
   - yarn test
   - yarn script lint
-after_success:
-	- './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
