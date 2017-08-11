@@ -1,6 +1,8 @@
 # retailify-webpack-stats
 
-This is an extended version of [webpack-bundle-tracker](https://github.com/ezhome/webpack-bundle-tracker) and we are using it as drop in replacement for our daily use. 
+[![Build Status](https://travis-ci.org/retailify/retailify-webpack-stats.svg?branch=master)](https://travis-ci.org/retailify/retailify-webpack-stats)
+
+This is an extended version of [webpack-bundle-tracker](https://github.com/ezhome/webpack-bundle-tracker) and we are using it as drop in replacement for our daily use.
 
 **Why we've copied it from the original place?**
 
