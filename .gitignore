@@ -27,6 +27,8 @@ build/Release
 node_modules
 .idea/
 assets/
-!examples/themes/assets
+!examples/abspath/themes/assets
+!examples/envabspath/themes/assets
+!examples/standardpath/themes/assets
 .nyc_output
 coverage
