@@ -28,8 +28,6 @@ npm install --save-dev retailify-webpack-stats
 
 ### Rules
 
-* If the absolutePath **and** RETAILIFY_WEBPACK_STATS_ABSPATH environment variable ist set, the webpack.config.js absolutePath is overwritten bei RETAILIFY_WEBPACK_STATS_ABSPATH
-
 * **absolutePath** overwrites the **path option** in webpack.config.js.
 
 ```javascript
